@@ -13,7 +13,9 @@ Thanks to Xi'an Jiao Tong University Rubik's Cube Club, for providing the idea o
 ## PDF link
 
 [Preview](https://github.com/nbwzx/CubeSudoku/blob/main/CubeSudoku.pdf)
+
 [Download](https://github.com/nbwzx/CubeSudoku/raw/main/CubeSudoku.pdf)
+
 ## Contributors
 
 Zixing Wang
