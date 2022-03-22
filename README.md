@@ -30,8 +30,8 @@ Finally, compile the `Cubesudoku.tex` file to `Cubesudoku.pdf` with `XeLaTex`
 
 ## Apperance
 <p align="center">
-<img align = "left" src = "images/CubeSudoku-03.png"  width = "50%">
-<img align = "right" src = "images/CubeSudoku-52.png"  width = "50%">
+<img align = "left" src = "images/CubeSudoku-03.png"  width = "45%">
+<img align = "right" src = "images/CubeSudoku-52.png"  width = "45%">
 </p>
 <br clear="left"/>
 
