@@ -22,15 +22,22 @@ Simply run `Cubesudoku.bat`
 
 Finally, compile the `Cubesudoku.tex` file to `Cubesudoku.pdf` with `XeLaTex`
 
-## Acknowledgement
-
-Thanks to Xi'an Jiao Tong University Rubik's Cube Club, for providing the idea of "Cube Sudoku".
-
 ## PDF link
 
 [Preview](https://github.com/nbwzx/CubeSudoku/blob/main/CubeSudoku.pdf)
 
 [Download](https://github.com/nbwzx/CubeSudoku/raw/main/CubeSudoku.pdf)
+
+## Apperance
+<p align="center">
+<img align = "left" src = "images/CubeSudoku-03.png"  width = "50%">
+<img align = "right" src = "images/CubeSudoku-52.png"  width = "50%">
+</p>
+<br clear="left"/>
+
+## Acknowledgement
+
+Thanks to Xi'an Jiao Tong University Rubik's Cube Club, for providing the idea of "Cube Sudoku".
 
 ## Contributors
 
