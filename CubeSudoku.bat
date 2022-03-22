@@ -1,0 +1,3 @@
+@echo off
+echo Generating the latex code now...
+python -u CubeSudoku.py > CubeSudoku.tex &
