@@ -745,10 +745,10 @@ def scrambleGenerate(depthMax, depth, last1, last2, str):
     if depth > 0:
         for _ in range(100000):
             i = random.randint(0, 17)
-            if i % 2 == 0 and (not(i % 6 == last1 % 6 or (last2 > 0 and i % 6 == (last1-1) % 6 and i % 6 == last2 % 6))):
+            if i % 2 == 0 and (not(i % 6 == last1 % 6 or (last2 >= 0 and i % 6 == (last1-1) % 6 and i % 6 == last2 % 6))):
                 str = str+arr1[i]+" "
                 break
-            if i % 2 == 1 and (not(i % 6 == last1 % 6 or (last2 > 0 and i % 6 == (last1+1) % 6 and i % 6 == last2 % 6))):
+            if i % 2 == 1 and (not(i % 6 == last1 % 6 or (last2 >= 0 and i % 6 == (last1+1) % 6 and i % 6 == last2 % 6))):
                 str = str+arr1[i]+" "
                 break
         scrambleGenerate(depthMax, depth+1, i, last1, str)
