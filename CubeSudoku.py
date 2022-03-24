@@ -688,7 +688,7 @@ def solveSudokucube(option, availableLimit):
             board[locationi][locationj] = i
             dfsEdge(n + 1)
             if availableNumber > availableLimit:
-                return 0 #pruning
+                return 0  # pruning
             board[locationi][locationj] = -1
 
     def dfsCorner(n):
@@ -708,7 +708,7 @@ def solveSudokucube(option, availableLimit):
             board[locationi][locationj] = i
             dfsCorner(n + 1)
             if availableNumber > availableLimit:
-                return 0 #pruning
+                return 0  # pruning
             board[locationi][locationj] = -1
 
     if option == 1:
@@ -721,107 +721,43 @@ def solveSudokucube(option, availableLimit):
         return False
 
 
-scramblelist = ["U2 D2 R D2 B2 D2 R D2 B2 D' B2 L U D'",
-                "R D2 F D2 B L2 B U2 F U2 R2 B2 R2 L' F' L2 B R F D' Fw",
-                "B2 L' U2 L' D2 B2 U2 L' D2 B2 L R B' R' B2 D R' B' F2 U L2 Fw",
-                "B2 U L2 F2 D2 L2 F2 U' R2 U B2 D' F R B2 L D2 L2 F L' R2 Uw'",
-                "R2 B2 D2 R2 F2 U' L2 D B2 L2 D2 F' L' F' R2 F D2 R2 F' R' U Uw2",
-                "F2 R2 F' R2 F2 R2 F' R2 B L2 F2 R B R2 F2 L' B D' B U Fw'",
-                "F' U' R2 B2 U L2 F2 L2 D R2 U' R2 B R U B D F' L2 B' R Rw' Uw",
-                "D R2 U2 F' L2 F' L2 B2 L2 D2 B F' D2 R' U F2 U R2 F R D2 Fw'",
-                "B' R U R L D B2 L' B R2 U2 R F2 L F2 U2 R2 B2 D2 R2 B2 Rw Uw",
-                "B' F2 U' R2 D' B2 U' L2 B2 U' F2 D2 R U2 B' D F R U2 R2 Uw",
-                "D2 L2 F2 L2 R2 D2 F' R2 U2 B' L2 F' U' B' D B R B D' L Fw Uw",
-                "F' L R2 U B2 U2 B2 L2 R2 U' L2 D2 R2 D' R F U2 F U2 R2 D2 Uw2",
-                "F U B' U2 R F B R2 D F2 R2 U2 R' U2 L' D2 L2 D2 F2 R' U2 Fw' Uw'",
-                "L' D' R2 B' L2 D2 U2 B R2 B2 R2 F' U2 B2 R' F2 D L2 U' F R2 Uw'",
-                "B D' R2 D2 B L2 B' L2 F R2 B' F2 U2 L' R D F D2 B' L F' Fw' Uw2",
-                "R' F2 L' D2 L' U2 R' F2 R' F2 D2 U' B D2 L' F2 R2 D2 U R Fw' Uw'",
-                "R' F' U2 F2 R' U2 L U2 B2 L2 R' D2 R' F2 U F R2 D2 B D L' Fw Uw",
-                "L D B U2 L D F' R' U B2 U2 B' L2 B' L2 U2 L2 F2 R2 D2 F2 Rw2",
-                "F2 D L F' R' U L F' B U2 L2 B2 R2 D2 B D2 B2 R2 U R2 Rw'",
-                "U' B2 L2 U2 B L2 B U2 R2 D2 F U2 F' R B2 L D' F' U2 F' R' Fw",
-                "D R2 D F2 L2 U B2 U L2 U B2 U F' U' R U2 R2 D' L2 B' L Rw'",
-                "F2 R2 D R2 U L2 U' F2 D' U2 R2 F' U' L' R' D B' D F2 U' Rw' Uw'",
-                "B2 R2 D2 B2 D2 F2 R2 F2 U' L2 U' L' F2 D' B' F2 D2 R' D' R' Fw Uw2",
-                "B R D2 F2 R2 F' U D L D L2 U F2 U' R2 F2 B2 U B2 D R2 Rw2 Uw",
-                "F2 D L2 D R2 B2 U2 L2 D2 L2 U B' D U2 R2 D2 B2 F R Rw' Uw",
-                "R2 D U2 B2 D' U' F2 U' F D R' U R2 F' L R2 U' Rw2 Uw'",
-                "F' R2 D2 B' D2 L2 F2 D2 F' D2 B' R' F L2 D2 U' R2 F2 Fw'",
-                "F2 R B R2 U' B R B2 R2 B2 L2 U' L2 F2 U B2 U2 F2 D B D2 Rw2",
-                "B' L2 D B2 L2 D' R2 D' B2 D B2 U L2 F R2 U' B' R D' B' F2 Rw Uw2",
-                "F2 U' L2 U' R2 U2 L2 B2 D R2 B2 U L' D' L2 B2 L U R2 F' D2 Rw",
-                "B U' R2 F B2 D B U2 F2 L' D2 F2 B2 L U2 R2 F2 D2 L2 B' L2 Rw'",
-                "D' R F2 U' F2 R' F' U B R2 U2 R' F2 L' U2 L' U2 L' B2 R' U2",
-                "R' D' F' L' D L' F U2 B2 R U2 B2 R2 L' U2 L2 D2 L' F2 B R2 Rw2",
-                "D B' R' F R2 F U2 R2 B D2 F L2 B F' U' F2 U2 R B' L D2 Rw2",
-                "F' L' F B D F' U' R' F' R2 F U2 L2 B R2 B2 L2 B' L2 F Rw' Uw",
-                "R' F2 U2 F2 D2 L2 D F2 U2 L2 B2 U' L2 R' D' L2 B' D' B2 U F' Uw",
-                "R2 U R B2 L U' B F2 U F2 U' R2 L2 F2 U R2 D2 R2 D' R U2 Rw Uw'",
-                "F D' B' U2 L2 F' D' L F L2 D2 F' U2 F2 U2 L2 D2 R' L2 Uw2",
-                "R F B2 L2 D L2 D2 R2 B2 F2 U' L2 U2 L' D' R' B' F' D' U' L2",
-                "L2 B' D2 B2 R2 D2 R' D2 F U' L2 U' F2 U B2 R2 U2 F2 U L2 D' Fw' Uw",
-                "F2 U' F2 U' L2 B2 U2 B2 U R2 D' L2 B D' F L2 F R' U F L' Uw2",
-                "D2 B2 L2 B2 D L2 R2 B2 D R2 D2 U' L F2 U' B' F2 U L' B R2 Fw Uw",
-                "L U2 B2 U2 R B2 D2 L' D2 L' U2 D' F2 R' U L2 F' R2 U B' Uw2",
-                "B' D2 L D F R2 L' B U2 B2 L2 D2 L U2 D2 L2 F2 U2 L' U2 D' Rw2",
-                "R' L2 D2 U L2 D' F2 D B2 U F2 U' L2 R' U' L2 R U L2 B' D2 Rw Uw2",
-                "D2 L2 D2 U L2 U' L2 R2 B2 L2 R2 B L2 R D' B' L B' D' B2 F2 Rw2 Uw2",
-                "D' U' B2 L2 D B2 U R2 U2 F2 U' R2 F D2 R' B' L2 U B D' Rw Uw",
-                "R D L' U F2 D' B U F2 L D2 L' D2 L D2 F2 L' D2 L' D2 U' Fw Uw2",
-                "U2 F2 D2 U2 F' D2 R2 F D2 B L2 F' R' D L2 F' L' R' F' D2 L Fw' Uw",
-                "D L2 U' R2 D2 L2 R2 F2 U B2 U F2 B' L' U' B D U' L2 D' F2 Rw",
-                "B2 D2 R2 D' L2 B2 U L2 R2 D2 L2 U' F R' U B2 D L2 B2 L2 B' Rw' Uw'",
-                "R D2 B R2 L2 B2 R U D2 B2 U2 R2 U2 B' R2 B' U2 F D2 R2 L Fw Uw'",
-                "B2 R' B2 U2 R' D2 L F R2 D L2 F2 D' B2 D' B2 R2 U' B2 L2 Fw' Uw",
-                "R' F' R2 F' L2 B' R2 D2 L2 R2 B2 D2 F' D B' R' D R2 D L2 U' Rw Uw2",
-                "F' B2 D' L U B' D' F U2 R' F2 D2 B2 U2 L2 D2 R' F2 U2 L F Rw' Uw'",
-                "R D2 R2 F U2 F L' F2 U R2 F2 D' L2 U R2 B2 L2 B2 U2 Rw Uw'",
-                "R2 B' R D2 L D R2 F' R U' B2 U L2 D' F2 U R2 U2 L2 B2 D2 Fw Uw'",
-                "D2 L' B D2 B' F2 U2 L2 F D2 L2 F U2 L D' U' R' D' R B' L Rw Uw'",
-                "L U' L F2 R2 B R2 D2 L2 R2 B D2 R2 B2 L' B' F2 L' U' B F' Fw' Uw'",
-                "B2 R B2 U2 R F2 R' F2 U2 L' D2 R2 D B2 D2 R2 F' U L B U2 Fw Uw",
-                "U' B2 L2 D2 B2 U2 B R2 D2 U2 F' R2 F' D F' L R U' F' D' Rw2 Uw2",
-                "R2 D2 B2 L2 B L2 U2 F2 D2 B D2 F' R' D' L B' F' D F2 L D2",
-                "D R2 U2 B2 L2 R2 D2 F L2 B' D2 F' R' D U F2 R' U' L' R B Rw Uw2",
-                "L2 F U2 B U2 L2 B' F' R2 U2 F D' U L' B' L R' U2 F' D R Fw'",
-                "U' D2 R2 F2 B' D B' U2 L2 D2 R2 F' U2 B U2 B U2 R2 Fw' Uw2",
-                "U' F2 U B2 D L2 D' L2 R2 U' R2 F U R2 U' L' D' F' R D2 U",
-                "R F2 D2 B2 U L2 F2 R2 B2 D2 U R2 U F' R' B D' F D F2 D2 Fw Uw'",
-                "D F2 L2 R2 U B2 L2 B2 D2 R2 D2 F2 R' F' R2 F2 R' U L2 D R Rw Uw'",
-                "D B R' B' U R' F2 R' U2 R2 L2 U2 R2 D' F2 D R2 F2 U' F2 Rw' Uw'",
-                "D' F' R' B R U2 L' F U2 F R2 F L2 F2 L2 F L2 F' R2 D' F Rw Uw",
-                "F U' F2 B' R L F' U B L2 U' R2 D' F2 U' F2 L2 D2 L2 U Rw' Uw",
-                "D R' D2 B2 R2 U2 B' D2 B D2 F2 L2 B' R2 D U L U2 B R' U2 Fw Uw'",
-                "B2 U' F2 D' L2 D' R2 B2 F2 D' L2 B L R2 B2 R' U B' L' D U2 Rw2 Uw2",
-                "D' B2 U L2 R2 U F2 U' L2 U L2 U' B' L' F L' B2 U R2 B Rw2",
-                "B' L2 D2 L2 R2 F2 D' F2 D F2 L2 R2 D' B L U' L U2 L D Rw2 Uw'",
-                "F L2 B2 F' D2 R2 D2 U2 B2 U2 L' D F2 L' B U R' F' L' Fw' Uw'",
-                "R2 D' R2 D2 R2 U2 R2 F2 U L2 U2 B R B2 F' R' U L' B' Rw",
-                "B' U2 F2 R2 F' U2 F' D2 B' D2 B D L' D F2 U R B' D' F' Fw'",
-                "L F2 U2 R2 F2 D2 R' D2 R B2 F2 L2 D' B' U F D' F2 L' D' B' Fw",
-                "L' B U F2 U2 B' L F2 L2 U2 F' U2 L2 F2 D2 L2 F U2 F' D R Uw",
-                "U' B2 L2 R F2 D2 L' D2 U2 F2 U2 R B2 U' L' D' F R B' U2 F2 Rw' Uw",
-                "R' F' L2 D R2 D L2 D' F2 R2 U2 L2 R2 D' F R B2 F2 U2 R' D' Rw Uw",
-                "L2 R2 F U2 F' U2 F L2 B L2 D2 F' L' U L2 R' B R2 D2 F' U' Rw Uw",
-                "R D2 B U L' D B U' B2 U2 D B2 R2 D2 R2 D2 R2 F2 B2 R D' Uw2",
-                "F R2 B2 L2 D2 L2 R2 F' D2 B U2 R2 L B F' L' R F U B U2 Rw2 Uw'",
-                "R2 L D' L U2 D' F' R F2 U2 R2 U2 R' U2 F2 U2 L2 D2 L2 B Fw' Uw",
-                "U' L2 R2 U R2 U F2 D' L2 R2 D2 U' R' F L' R' D2 B2 D L' B Fw'",
-                "L D' L2 D2 L' F2 U2 B2 L2 B2 R F2 R2 F2 B' L2 D' L D B F' Uw",
-                "R D R2 U2 B2 F2 U R2 D2 L2 B2 L2 R' D' F' U R2 F2 R D2 F' Fw Uw2",
-                "L2 F' R F R' L' U F R2 B' L2 U2 B2 R2 L2 B D2 L2 U2 D L Rw' Uw'",
-                "R2 B' U2 B D2 F' D2 B2 L2 R2 D2 F D L R B R' F' D2 U Uw",
-                "R' U2 B2 D2 U2 R2 D2 B2 L' F2 R2 D B F D' L F D' L B2 D Fw'",
-                "L B2 D' L2 D F2 R2 B2 D2 L2 U B2 D' R' F R2 F2 R D L' U2 Uw",
-                "F' B2 R2 D' B2 L2 R2 D2 B2 U F2 D' B2 R D' U B2 L' F D2 R2 Uw2",
-                "L2 D2 F D2 B L2 F2 U2 L2 D2 F2 R' D' F L' U' F' R' D2 F' Rw Uw",
-                "U L' R2 D2 B2 L2 F2 D' R2 U' F2 R2 D' F' L D2 R D' B' L2 B2 Rw Uw",
-                "D' R2 D R2 D2 B2 D B2 F2 R2 D' B L2 R' B' R2 B2 F' D2 U' Rw2 Uw2",
-                "U' B2 F' R2 D2 R2 U2 R2 F' R2 B2 F' R' F U2 L' B2 U2 R' Uw'",
-                "F2 U L F U' R' D F2 R2 F D2 R2 B U2 F R2 U2 F2 D2 R Rw2 Uw",
-                "U2 F' D2 F U2 B' R2 B' L2 F D' R U L F2 U2 F' L2 F Rw"
-                ]
+def scrambleGenerate(depthMax, depth, last1, last2, str):
+    arr1 = ["U", "D", "R", "L", "F", "B", "U2", "D2", "R2",
+            "L2", "F2", "B2", "U'", "D'", "R'", "L'", "F'", "B'"]
+    arr2 = ["Rw", "Fw", "Rw'", "Fw'"]
+    arr3 = ["Uw", "Uw'", "Uw2"]
+    if depth == depthMax-2:
+        i = random.randint(0, 5)
+        if i <= 3:
+            str = str+arr2[i]+" "
+        depth = depth+1
+    if depth == depthMax-1:
+        i = random.randint(0, 2)
+        str = str+arr3[i]+" "
+        depth = depth+1
+    if depth == depthMax:
+        scramblelist.append(str)
+        return
+    if depth == 0:
+        i = random.randint(0, 17)
+        str = str+arr1[i]+" "
+        scrambleGenerate(depthMax, depth+1, i, -1, str)
+    if depth > 0:
+        for _ in range(100000):
+            i = random.randint(0, 17)
+            if i % 2 == 0 and (not(i % 6 == last1 % 6 or (last2 > 0 and i % 6 == (last1-1) % 6 and i % 6 == last2 % 6))):
+                str = str+arr1[i]+" "
+                break
+            if i % 2 == 1 and (not(i % 6 == last1 % 6 or (last2 > 0 and i % 6 == (last1+1) % 6 and i % 6 == last2 % 6))):
+                str = str+arr1[i]+" "
+                break
+        scrambleGenerate(depthMax, depth+1, i, last1, str)
+
+
+random.seed(1)
+scramblelist = []
+for scramblelistNum in range(100):
+    scrambleGenerate(22, 0, -1, -1, "")
 
 print("""\\documentclass[12pt]{article}
 \\def\\filedate{2022/3/22}
@@ -882,7 +818,7 @@ Cube Sudoku is to fill colors in a 3$\\times$3$\\times$3 Rubik's cube with the \
     \\node[fill=yellow] at (0.5,3.5) {};
     \\node[fill=yellow] at (1.5,3.5) {};
     \\node[fill=yellow] at (2.5,3.5) {};
-    
+
     \\node[fill=blue] at (-2.5,2.5) {};
     \\node[fill=blue] at (-1.5,2.5) {};
     \\node[fill=blue] at (-0.5,2.5) {};
@@ -895,7 +831,7 @@ Cube Sudoku is to fill colors in a 3$\\times$3$\\times$3 Rubik's cube with the \
     \\node[fill=orange] at (6.5,2.5) {};
     \\node[fill=orange] at (7.5,2.5) {};
     \\node[fill=orange] at (8.5,2.5) {};
-    
+
     \\node[fill=blue] at (-2.5,1.5) {};
     \\node[fill=blue] at (-1.5,1.5) {};
     \\node[fill=blue] at (-0.5,1.5) {};
@@ -908,7 +844,7 @@ Cube Sudoku is to fill colors in a 3$\\times$3$\\times$3 Rubik's cube with the \
     \\node[fill=orange] at (6.5,1.5) {};
     \\node[fill=orange] at (7.5,1.5) {};
     \\node[fill=orange] at (8.5,1.5) {};
-    
+
     \\node[fill=blue] at (-2.5,0.5) {};
     \\node[fill=blue] at (-1.5,0.5) {};
     \\node[fill=blue] at (-0.5,0.5) {};
@@ -921,7 +857,7 @@ Cube Sudoku is to fill colors in a 3$\\times$3$\\times$3 Rubik's cube with the \
     \\node[fill=orange] at (6.5,0.5) {};
     \\node[fill=orange] at (7.5,0.5) {};
     \\node[fill=orange] at (8.5,0.5) {};
-    
+
     \\node[fill=white] at (0.5,-0.5) {};
     \\node[fill=white] at (1.5,-0.5) {};
     \\node[fill=white] at (2.5,-0.5) {};
@@ -931,10 +867,10 @@ Cube Sudoku is to fill colors in a 3$\\times$3$\\times$3 Rubik's cube with the \
     \\node[fill=white] at (0.5,-2.5) {};
     \\node[fill=white] at (1.5,-2.5) {};
     \\node[fill=white] at (2.5,-2.5) {};
-    
+
     \\draw[step=1cm,color=black, ultra thick] (-3,0) grid (9,3);
     \\draw[step=1cm,color=black, ultra thick] (0,-3) grid (3,0);
-    \\draw[step=1cm,color=black, ultra thick] (0,3) grid (3,6);    
+    \\draw[step=1cm,color=black, ultra thick] (0,3) grid (3,6);
 \\end{tikzpicture}
 
 \\vspace{0.5cm}
@@ -964,7 +900,7 @@ Thanks to Xi'an Jiao Tong University Rubik's Cube Club, for providing the idea o
 MIT License
 \\pagebreak
 """)
-random.seed(0)
+
 for problemNumber in range(1, 101):
     a = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
          [1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -1017,28 +953,23 @@ for problemNumber in range(1, 101):
             availableEdge = 2
     if problemNumber <= 100 and problemNumber > 90:
         starNumber = "$\\bigstar\\bigstar\\bigstar\\bigstar\\bigstar$"
-        randomNumber = random.randint(0, 4)
+        randomNumber = random.randint(0, 3)
         if randomNumber == 0:
-            deleteCorner = 13
-            availableCorner = 1
-            deleteEdge = 7
-            availableEdge = 3
-        if randomNumber == 1:
             deleteCorner = 14
             availableCorner = 2
             deleteEdge = 6
             availableEdge = 1
-        if randomNumber == 2:
+        if randomNumber == 1:
             deleteCorner = 13
             availableCorner = 1
             deleteEdge = 6
             availableEdge = 2
-        if randomNumber == 3:
+        if randomNumber == 2:
             deleteCorner = 13
             availableCorner = 2
             deleteEdge = 6
             availableEdge = 1
-        if randomNumber == 4:
+        if randomNumber == 3:
             deleteCorner = 13
             availableCorner = 1
             deleteEdge = 6
@@ -1189,7 +1120,7 @@ for problemNumber in range(1, 101):
 
 \\draw[step=1cm,color=black, ultra thick] (-3,0) grid (9,3);
 \\draw[step=1cm,color=black, ultra thick] (0,-3) grid (3,0);
-\\draw[step=1cm,color=black, ultra thick] (0,3) grid (3,6);    
+\\draw[step=1cm,color=black, ultra thick] (0,3) grid (3,6);
 \\end{tikzpicture}
 \\vspace{0.1cm}
 \\\\
