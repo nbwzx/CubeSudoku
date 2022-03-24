@@ -1056,7 +1056,7 @@ for problemNumber in range(1, 101):
             gray[i[0]][i[1]] = "\Large \\textbf " + str(sumGray)
 
     print("""
-{\\noindent\\Large \\textbf{No. """ + str(problemNumber) + """\\qquad Difficulty:""" + starNumber + """}}
+{\\noindent\\Large  \\newtime \\textbf{No. """ + str(problemNumber) + """\\qquad Difficulty: """ + starNumber + """}}
 \\vspace{0.2cm}\\\\
 \\begin{tikzpicture}[every node/.style={minimum size=1cm-\\pgflinewidth, outer sep=0pt}]
 \\node[fill=""" + fill[0][0] + """] at (0.5,5.5) {""" + gray[0][0] + """};
